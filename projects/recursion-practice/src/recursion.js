@@ -47,11 +47,15 @@ var sumBelow = function(n) {
 
 // 6. Get the integers in range (x, y).
 // Example:  range(2, 9);  // [3, 4, 5, 6, 7, 8]
-var range = function(x, y) {
-  if (x + 1 === y || x === y) return []; // Base case
-  let next = x < y ? x + 1 : x - 1;
-  return [next].concat(range(next, y));
-};
+function range(x, y) {
+  if (Math.abs(x - y) <= 1) return []; // Base case: no integers in range
+
+  if (x < y) return [x + 1].concat(range(x + 1, y)); // Increasing order
+  if (x > y) return [x - 1].concat(range(x - 1, y)); // Decreasing order
+}
+
+
+
 
 
 // 7. Compute the exponent of a number.
@@ -108,10 +112,11 @@ var modulo = function(x, y) {
 // JavaScript's Math object.
 // ATTENTION DO NOT LEAVE COMMENTS IN THIS FUNCTION. The test is looking for any ('/').
 var multiply = function(x, y) {
-  if (y === 0) return 0; // Base case
-  if (y > 0) return x + multiply(x, y - 1); // Positive y
-  if (y < 0) return -multiply(x, -y); // Negative y
+  if (y === 0) return 0;
+  if (y > 0) return x + multiply(x, y - 1);
+  return -multiply(x, -y);
 };
+
 
 
 // 13. Write a function that divides two numbers without using the / operator  or
