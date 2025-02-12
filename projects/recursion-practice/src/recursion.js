@@ -69,12 +69,19 @@ var sumBelow = function(n) {
 // 6. Get the integers in range (x, y).
 // Example:  range(2, 9);  // [3, 4, 5, 6, 7, 8]
 var range = function(x, y) {
-  if (x + 1 === y || x === y) return []; // Base case: no numbers in between
-  
+  // Base case: no integers in range
+  if (x === y || Math.abs(x - y) === 1) {
+    return [];
+  }
+
+  // Recursive case: x < y (ascending order)
   if (x < y) {
-    return [x + 1, ...range(x + 1, y)]; // Increasing order
-  } else {
-    return [x - 1, ...range(x - 1, y)]; // Decreasing order
+    return [x + 1].concat(range(x + 1, y));
+  }
+
+  // Recursive case: x > y (descending order)
+  if (x > y) {
+    return [x - 1].concat(range(x - 1, y));
   }
 };
 
@@ -85,15 +92,38 @@ var range = function(x, y) {
 // Example:  exponent(4,3);  // 64
 // https://www.khanacademy.org/computing/computer-science/algorithms/recursive-algorithms/a/computing-powers-of-a-number
 var exponent = function(base, exp) {
+  // Base case: exponent is 0
+  if (exp === 0) {
+    return 1;
+  }
+  // Base case: exponent is 1
+  if (exp === 1) {
+    return base;
+  }
+  // Recursive case: positive exponent
+  if (exp > 0) {
+    return base * exponent(base, exp - 1);
+  }
+  // Recursive case: negative exponent
+  if (exp < 0) {
+    return 1 / exponent(base, -exp);
+  }
 };
+console.log(exponent(4, 3)); // Output: 64
 
 // 8. Determine if a number is a power of two.
 // powerOfTwo(1); // true
 // powerOfTwo(16); // true
 // powerOfTwo(10); // false
 var powerOfTwo = function(n) {
+  if (n === 1) {
+    return true; // Base case: 2^0 = 1
+  }
+  if (n < 1 || n % 2 !== 0) {
+    return false; // Not a power of two
+  }
+  return powerOfTwo(n / 2); // Recursive case
 };
-
 // 9. Write a function that accepts a string a reverses it.
 var reverse = function(string) {
 };
