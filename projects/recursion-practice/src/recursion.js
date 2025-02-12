@@ -54,12 +54,30 @@ var isEven = function(n) {
 // sumBelow(10); // 45
 // sumBelow(7); // 21
 var sumBelow = function(n) {
+  if (n === 0) {
+    return 0;
+  }
+  //if n is positive, subtract 1 and add the result of calling recursion
+  if (n > 0) {
+    return (n - 1) + sumBelow(n - 1);
+  }
+  //if n is negative (n < 0), add add and call the recursice function plus 1
+  return (n + 1) + sumBelow(n + 1);
 };
+
 
 // 6. Get the integers in range (x, y).
 // Example:  range(2, 9);  // [3, 4, 5, 6, 7, 8]
 var range = function(x, y) {
+  if (x + 1 === y || x === y) return []; // Base case: no numbers in between
+  
+  if (x < y) {
+    return [x + 1, ...range(x + 1, y)]; // Increasing order
+  } else {
+    return [x - 1, ...range(x - 1, y)]; // Decreasing order
+  }
 };
+
 
 // 7. Compute the exponent of a number.
 // The exponent of a number says how many times the base number is used as a factor.
