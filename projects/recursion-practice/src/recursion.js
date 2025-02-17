@@ -126,25 +126,60 @@ var powerOfTwo = function(n) {
 };
 // 9. Write a function that accepts a string a reverses it.
 var reverse = function(string) {
-};
+  if (string.length === 0) {
+    return "";
+  }
+  return reverse(string.slice(1)) + string[0];
+}
 
 // 10. Write a function that determines if a string is a palindrome.
-var palindrome = function(string) {
+var palindrome = function(str) {
+  // Normalize the string: remove non-alphanumeric characters and convert to lowercase
+  str = str.toLowerCase().replace(/[^a-z0-9]/g, '');
+
+  // Base case: an empty string or a single character is always a palindrome
+  if (str.length <= 1) {
+    return true;
+  }
+
+  // Check if first and last characters match
+  if (str[0] !== str[str.length - 1]) {
+    return false;
+  }
+
+  // Recursive case: check the substring excluding first and last characters
+  return palindrome(str.slice(1, -1));
 };
+
+// Export function for testing (if using Node.js or Mocha in a module-based setup)
+if (typeof module !== "undefined" && module.exports) {
+  module.exports = palindrome;
+}
+
 
 // 11. Write a function that returns the remainder of x divided by y without using the
 // modulo (%) operator.
 // modulo(5,2) // 1
 // modulo(17,5) // 2
 // modulo(22,6) // 4
-var modulo = function(x, y) {
+var multiply = function(x, y) {
+  if (y === 0) return ___; // Base case: anything times 0 is ?
+  
+  if (y < 0) return -multiply(___, ___); // If y is negative, flip the sign
+
+  return x + multiply(___, ___); // Recursively add x
 };
+
 
 // 12. Write a function that multiplies two numbers without using the * operator  or
 // JavaScript's Math object.
 // ATTENTION DO NOT LEAVE COMMENTS IN THIS FUNCTION. The test is looking for any ('/').
 var multiply = function(x, y) {
+  if (y === 0) return 0;
+  if (y < 0) return -multiply(x, -y);
+  return x + multiply(x, y - 1);
 };
+
 
 // 13. Write a function that divides two numbers without using the / operator  or
 // JavaScript's Math object.
@@ -165,6 +200,15 @@ var gcd = function(x, y) {
 // compareStr('', '') // true
 // compareStr('tomato', 'tomato') // true
 var compareStr = function(str1, str2) {
+  //base case
+  if (str1.length === 0 && str2.length === 0) {
+    return true;
+  } else if (str1[0] !== str2[0]) {
+    return false;
+  }
+  return compareStr(str1.slice(1), str2.slice(1));
+
+
 };
 
 // 16. Write a function that accepts a string and creates an array where each letter

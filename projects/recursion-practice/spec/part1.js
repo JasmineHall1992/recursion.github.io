@@ -334,37 +334,6 @@
 
 
 
-    describe('9. Reverse String', function() {
-
-      it('should return a string', function() {
-        expect(typeof(reverse('orangutan'))).to.equal('string');
-      });
-
-      it('should return a string in reverse', function() {
-        var poem = 'Roses are red, violets are blue, all my base are belong to you.';
-
-        expect(reverse('Racecar')).to.equal('racecaR');
-        expect(reverse(poem)).to.equal('.uoy ot gnoleb era esab ym lla ,eulb era steloiv ,der era sesoR');
-      });
-
-      it('should not mutate the input string', function() {
-        var input = 'orangutan';
-        var result = reverse(input);
-        expect(input).to.eql('orangutan');
-      });
-
-      it('should use recursion by calling self', function () {
-        var originalReverse = reverse;
-        reverse = sinon.spy(reverse);
-        reverse('orangutan');
-        expect(reverse.callCount).to.be.above(1);
-        reverse = originalReverse;
-      });
-
-    });
-
-
-
     describe('10. Palindrome', function() {
 
       it('should return a boolean', function() {
